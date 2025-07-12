@@ -1,0 +1,56 @@
+name: Test Templates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-simple-pnpm:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+      
+      - name: Install CLI dependencies
+        run: pnpm install
+      
+      - name: Test simple-pnpm template
+        run: |
+          # CLIでプロジェクトを作成
+          node bin/cli.js create test-simple-pnpm --template simple-pnpm --skip-git
+          
+          # ビルドをテスト
+          cd test-simple-pnpm
+          pnpm install
+          pnpm build
+          pnpm typecheck
+  
+  test-react-native-monorepo:
+    runs-on: ubuntu-latest
+    if: ${{ false }} # react-native-monorepoテンプレートが実装されたら有効化
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+      
+      - name: Install CLI dependencies
+        run: pnpm install
+      
+      - name: Test react-native-monorepo template
+        run: |
+          # CLIでプロジェクトを作成
+          node bin/cli.js create test-monorepo --template react-native-monorepo --skip-git
+          
+          # ビルドをテスト
+          cd test-monorepo
+          pnpm install
+          pnpm build

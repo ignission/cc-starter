@@ -1,0 +1,22 @@
+name: 'Setup Environment'
+description: 'asdfを使用してNode.jsとpnpmをセットアップします'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup asdf
+      uses: asdf-vm/actions/setup@v3
+
+    - name: Install asdf plugins
+      shell: bash
+      run: |
+        asdf plugin add nodejs || true
+        asdf plugin add pnpm || true
+
+    - name: Install asdf tools
+      shell: bash
+      run: asdf install
+
+    - name: Set NPM registry URL
+      shell: bash
+      run: npm config set registry https://registry.npmjs.org
