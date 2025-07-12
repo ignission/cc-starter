@@ -33,7 +33,12 @@
     "test:watch": "vitest",
     "test:ci": "vitest run",
     "release": "changeset publish",
-    "version": "changeset version"
+    "version": "changeset version",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "fix": "biome check --write .",
+    "fix:unsafe": "biome check --unsafe --fix .",
+    "fix:all": "pnpm format && pnpm fix"
   },
   "dependencies": {
     "chalk": "5.4.1",
@@ -44,6 +49,7 @@
     "ora": "8.2.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.1.1",
     "@changesets/cli": "2.29.5",
     "@types/fs-extra": "11.0.4",
     "@types/inquirer": "9.0.8",
