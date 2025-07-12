@@ -37,7 +37,7 @@ importers:
         specifier: ^9.0.0
         version: 9.0.8
       '@types/node':
-        specifier: ^20.11.0
+        specifier: ^20.19.7
         version: 20.19.7
       vitest:
         specifier: ^1.6.1
