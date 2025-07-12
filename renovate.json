@@ -10,35 +10,95 @@
   "labels": ["dependencies", "renovate"],
   "packageRules": [
     {
-      "description": "Simple PNPMテンプレート",
+      "description": "Simple PNPM template - Base configuration",
       "matchPaths": ["templates/simple-pnpm/**"],
-      "groupName": "Simple PNPM template",
-      "commitMessageTopic": "Simple template",
-      "additionalBranchPrefix": "simple-pnpm-"
+      "additionalBranchPrefix": "simple-pnpm-",
+      "commitMessagePrefix": "chore(simple-pnpm): "
     },
     {
-      "description": "React Native Monorepoテンプレート",
+      "description": "Simple PNPM template - React Router packages",
+      "matchPaths": ["templates/simple-pnpm/**"],
+      "matchPackagePatterns": ["^@react-router", "^react-router"],
+      "groupName": "Simple PNPM - React Router",
+      "automerge": false,
+      "labels": ["template-simple", "react-router"]
+    },
+    {
+      "description": "Simple PNPM template - React packages",
+      "matchPaths": ["templates/simple-pnpm/**"],
+      "matchPackagePatterns": ["^react", "^react-dom"],
+      "groupName": "Simple PNPM - React",
+      "automerge": false,
+      "labels": ["template-simple", "react"]
+    },
+    {
+      "description": "Simple PNPM template - Build tools",
+      "matchPaths": ["templates/simple-pnpm/**"],
+      "matchPackageNames": ["vite", "@vitejs/plugin-react", "typescript"],
+      "groupName": "Simple PNPM - Build tools",
+      "labels": ["template-simple", "build-tools"]
+    },
+    {
+      "description": "React Native Monorepo template - Base configuration",
       "matchPaths": ["templates/react-native-monorepo/**"],
-      "groupName": "React Native Monorepo template",
-      "commitMessageTopic": "React Native template",
-      "additionalBranchPrefix": "rn-monorepo-"
+      "additionalBranchPrefix": "rn-monorepo-",
+      "commitMessagePrefix": "chore(rn-monorepo): "
     },
     {
-      "description": "メジャーアップデートは手動レビュー",
+      "description": "React Native Monorepo template - Expo packages",
+      "matchPaths": ["templates/react-native-monorepo/**"],
+      "matchPackagePatterns": ["^expo"],
+      "groupName": "RN Monorepo - Expo",
+      "automerge": false,
+      "labels": ["template-monorepo", "expo"]
+    },
+    {
+      "description": "React Native Monorepo template - React Native packages",
+      "matchPaths": ["templates/react-native-monorepo/**"],
+      "matchPackagePatterns": ["^react-native", "^@react-native"],
+      "groupName": "RN Monorepo - React Native",
+      "automerge": false,
+      "labels": ["template-monorepo", "react-native"]
+    },
+    {
+      "description": "React Native Monorepo template - Monorepo tools",
+      "matchPaths": ["templates/react-native-monorepo/**"],
+      "matchPackageNames": ["turbo", "tsup"],
+      "groupName": "RN Monorepo - Build tools",
+      "automerge": false,
+      "labels": ["template-monorepo", "monorepo-tools"]
+    },
+    {
+      "description": "Major updates require manual review",
       "matchUpdateTypes": ["major"],
       "labels": ["major-update"],
       "automerge": false
     },
     {
-      "description": "マイナー・パッチアップデートは自動マージ",
+      "description": "Auto-merge minor and patch updates",
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeType": "pr"
     },
     {
-      "description": "React関連は慎重に更新",
+      "description": "Root React packages require careful updates",
+      "matchPaths": ["package.json"],
       "matchPackagePatterns": ["^react", "^@react"],
       "automerge": false
+    },
+    {
+      "description": "Template dev dependencies",
+      "matchPaths": ["templates/**/package.json"],
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true,
+      "groupName": "Template dev dependencies"
+    },
+    {
+      "description": "Template type definitions",
+      "matchPaths": ["templates/**/package.json"],
+      "matchPackagePatterns": ["^@types/"],
+      "automerge": true,
+      "groupName": "Template type definitions"
     },
     {
       "description": "GitHub Actions",
