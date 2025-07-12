@@ -1,0 +1,80 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":disableRateLimiting",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":timezone(Asia/Tokyo)"
+  ],
+  "labels": ["dependencies", "renovate"],
+  "packageRules": [
+    {
+      "description": "Simple PNPMテンプレート",
+      "matchPaths": ["templates/simple-pnpm/**"],
+      "groupName": "Simple PNPM template",
+      "commitMessageTopic": "Simple template",
+      "additionalBranchPrefix": "simple-pnpm-"
+    },
+    {
+      "description": "React Native Monorepoテンプレート",
+      "matchPaths": ["templates/react-native-monorepo/**"],
+      "groupName": "React Native Monorepo template",
+      "commitMessageTopic": "React Native template",
+      "additionalBranchPrefix": "rn-monorepo-"
+    },
+    {
+      "description": "メジャーアップデートは手動レビュー",
+      "matchUpdateTypes": ["major"],
+      "labels": ["major-update"],
+      "automerge": false
+    },
+    {
+      "description": "マイナー・パッチアップデートは自動マージ",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "React関連は慎重に更新",
+      "matchPackagePatterns": ["^react", "^@react"],
+      "automerge": false
+    },
+    {
+      "description": "GitHub Actions",
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "automerge": true
+    },
+    {
+      "description": "asdf tools (.tool-versions)",
+      "matchManagers": ["asdf"],
+      "groupName": "asdf tools",
+      "commitMessageTopic": "asdf tools",
+      "automerge": false,
+      "labels": ["asdf", "tools"]
+    }
+  ],
+  "includePaths": [
+    "package.json",
+    "templates/**/package.json",
+    ".github/workflows/*.yml",
+    ".tool-versions"
+  ],
+  "ignorePaths": [
+    "**/node_modules/**"
+  ],
+  "schedule": [
+    "after 9am and before 6pm every weekday"
+  ],
+  "prConcurrentLimit": 3,
+  "prBodyTemplate": "This PR updates dependencies in {{parentDir}}",
+  "commitMessagePrefix": "chore(deps): ",
+  "commitMessageAction": "update",
+  "commitMessageTopic": "{{depName}}",
+  "commitMessageExtra": "to {{newVersion}}",
+  "rangeStrategy": "bump",
+  "postUpdateOptions": [
+    "pnpmDedupe"
+  ]
+}
