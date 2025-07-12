@@ -24,7 +24,7 @@ importers:
         specifier: ^9.2.0
         version: 9.3.7
       ora:
-        specifier: ^8.0.0
+        specifier: ^8.2.0
         version: 8.2.0
     devDependencies:
       '@changesets/cli':
