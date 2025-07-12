@@ -39,3 +39,6 @@ tmp/
 # Changesets
 .changeset/*.md
 !.changeset/README.md
+
+# Renovate
+renovate.log

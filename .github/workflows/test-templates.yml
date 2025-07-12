@@ -22,8 +22,8 @@ jobs:
       
       - name: Test simple-pnpm template
         run: |
-          # CLIでプロジェクトを作成
-          node bin/cli.js create test-simple-pnpm --template simple-pnpm --skip-git
+          # CLIでプロジェクトを作成（依存関係インストールもスキップ）
+          node bin/cli.js create test-simple-pnpm --template simple-pnpm --skip-git --skip-install
           
           # ビルドをテスト
           cd test-simple-pnpm
@@ -33,7 +33,6 @@ jobs:
   
   test-react-native-monorepo:
     runs-on: ubuntu-latest
-    if: ${{ false }} # react-native-monorepoテンプレートが実装されたら有効化
     
     steps:
       - name: Checkout
@@ -47,10 +46,16 @@ jobs:
       
       - name: Test react-native-monorepo template
         run: |
-          # CLIでプロジェクトを作成
-          node bin/cli.js create test-monorepo --template react-native-monorepo --skip-git
+          # CLIでプロジェクトを作成（依存関係インストールもスキップ）
+          node bin/cli.js create test-monorepo --template react-native-monorepo --skip-git --skip-install
           
           # ビルドをテスト
           cd test-monorepo
           pnpm install
           pnpm build
+          
+          # Web アプリの型チェック
+          pnpm web typecheck
+          
+          # モバイルアプリはExpoなのでビルドは型チェックのみ実行
+          pnpm mobile typecheck

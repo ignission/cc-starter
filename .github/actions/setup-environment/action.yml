@@ -17,6 +17,15 @@ runs:
       shell: bash
       run: asdf install
 
+    - name: Verify and ensure pnpm
+      shell: bash
+      run: |
+        echo "PATH: $PATH"
+        asdf current
+        asdf reshim nodejs
+        asdf reshim pnpm
+        pnpm --version
+
     - name: Set NPM registry URL
       shell: bash
       run: npm config set registry https://registry.npmjs.org
