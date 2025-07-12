@@ -1,39 +1,6 @@
-# Dependencies
-node_modules/
-.pnpm-store/
-
-# Build output
-build/
-dist/
-.react-router/
-
-# Environment files
-.env
-.env.local
-.env.*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+/node_modules/
 
-# Logs
-logs
-*.log
-npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Testing
-coverage/
-.nyc_output
-
-# Misc
-*.pem
+# React Router
+/.react-router/
+/build/

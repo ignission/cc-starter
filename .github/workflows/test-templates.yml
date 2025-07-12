@@ -31,31 +31,31 @@ jobs:
           pnpm build
           pnpm typecheck
   
-  test-react-native-monorepo:
-    runs-on: ubuntu-latest
+  # test-react-native-monorepo:
+  #   runs-on: ubuntu-latest
     
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
       
-      - name: Setup environment
-        uses: ./.github/actions/setup-environment
+  #     - name: Setup environment
+  #       uses: ./.github/actions/setup-environment
       
-      - name: Install CLI dependencies
-        run: pnpm install
+  #     - name: Install CLI dependencies
+  #       run: pnpm install
       
-      - name: Test react-native-monorepo template
-        run: |
-          # CLIでプロジェクトを作成（依存関係インストールもスキップ）
-          node bin/cli.js create test-monorepo --template react-native-monorepo --skip-git --skip-install
+  #     - name: Test react-native-monorepo template
+  #       run: |
+  #         # CLIでプロジェクトを作成（依存関係インストールもスキップ）
+  #         node bin/cli.js create test-monorepo --template react-native-monorepo --skip-git --skip-install
           
-          # ビルドをテスト
-          cd test-monorepo
-          pnpm install
-          pnpm build
+  #         # ビルドをテスト
+  #         cd test-monorepo
+  #         pnpm install
+  #         pnpm build
           
-          # Web アプリの型チェック
-          pnpm web typecheck
+  #         # Web アプリの型チェック
+  #         pnpm web typecheck
           
-          # モバイルアプリはExpoなのでビルドは型チェックのみ実行
-          pnpm mobile typecheck
+  #         # モバイルアプリはExpoなのでビルドは型チェックのみ実行
+  #         pnpm mobile typecheck

@@ -1,13 +1,7 @@
-import { reactRouter } from "@react-router/dev/vite";
-import { defineConfig } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
+import type { Config } from "@react-router/dev/config";
 
-export default defineConfig({
-  plugins: [
-    reactRouter({
-      // SPA mode - 静的ホスティング向け
-      ssr: false,
-    }),
-    tsconfigPaths(),
-  ],
-});
+export default {
+  // Config options...
+  // Server-side render by default, to enable SPA mode set this to `false`
+  ssr: true,
+} satisfies Config;
