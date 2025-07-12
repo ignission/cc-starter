@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sse", "https://mcp.context7.com/sse"],
+      "transport": "stdio"
+    }
+  }
+}
