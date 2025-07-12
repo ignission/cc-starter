@@ -150,4 +150,4 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 ## サポート
 
 - [GitHub Issues](https://github.com/ignission/cc-starter/issues)
-- [Ignition Code™](https://ignission.io)
+- [Ignition Code™](https://code.ignission.tech)
