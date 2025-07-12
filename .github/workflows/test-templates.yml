@@ -33,7 +33,6 @@ jobs:
   
   test-react-native-monorepo:
     runs-on: ubuntu-latest
-    if: ${{ false }} # react-native-monorepoテンプレートが実装されたら有効化
     
     steps:
       - name: Checkout
@@ -54,3 +53,9 @@ jobs:
           cd test-monorepo
           pnpm install
           pnpm build
+          
+          # Web アプリの型チェック
+          pnpm web typecheck
+          
+          # モバイルアプリはExpoなのでビルドは型チェックのみ実行
+          pnpm mobile typecheck
