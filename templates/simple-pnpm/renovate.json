@@ -1,0 +1,67 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":disableRateLimiting",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":timezone(Asia/Tokyo)",
+    ":automergeDigest",
+    ":automergeMinor",
+    "group:monorepos",
+    "group:recommended",
+    "helpers:disableTypesNodeMajor",
+    "workarounds:all"
+  ],
+  "labels": ["dependencies", "renovate"],
+  "packageRules": [
+    {
+      "description": "メジャーアップデートは手動レビュー",
+      "matchUpdateTypes": ["major"],
+      "labels": ["major-update"],
+      "automerge": false
+    },
+    {
+      "description": "マイナー・パッチアップデートは自動マージ",
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "React関連は慎重に更新",
+      "matchPackagePatterns": ["^react", "^@react-router"],
+      "automerge": false,
+      "labels": ["react"]
+    },
+    {
+      "description": "開発依存関係は積極的に更新",
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true,
+      "schedule": ["at any time"]
+    },
+    {
+      "description": "型定義は積極的に更新",
+      "matchPackagePatterns": ["^@types/"],
+      "automerge": true,
+      "schedule": ["at any time"],
+      "groupName": "Type definitions"
+    }
+  ],
+  "schedule": [
+    "after 9am and before 6pm every weekday"
+  ],
+  "prConcurrentLimit": 5,
+  "prBodyTemplate": "このPRは依存関係を更新します。\n\n{{#if releases}}\n{{#each releases}}\n- {{depName}}: `{{currentVersion}}` → `{{newVersion}}`\n{{/each}}\n{{/if}}",
+  "commitMessagePrefix": "chore(deps): ",
+  "commitMessageAction": "update",
+  "commitMessageTopic": "{{depName}}",
+  "commitMessageExtra": "to {{newVersion}}",
+  "rangeStrategy": "bump",
+  "postUpdateOptions": [
+    "pnpmDedupe"
+  ],
+  "platformAutomerge": true,
+  "ignoreTests": false,
+  "dependencyDashboardAutoclose": true,
+  "dependencyDashboardTitle": "🔄 依存関係の更新"
+}
