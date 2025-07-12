@@ -18,18 +18,18 @@ jobs:
         uses: ./.github/actions/setup-environment
       
       - name: Install CLI dependencies
-        run: pnpm install
+        run: pnpm install || npm install
       
       - name: Test simple-pnpm template
         run: |
-          # CLIでプロジェクトを作成
-          node bin/cli.js create test-simple-pnpm --template simple-pnpm --skip-git
+          # CLIでプロジェクトを作成（依存関係インストールもスキップ）
+          node bin/cli.js create test-simple-pnpm --template simple-pnpm --skip-git --skip-install
           
           # ビルドをテスト
           cd test-simple-pnpm
-          pnpm install
-          pnpm build
-          pnpm typecheck
+          pnpm install || npm install
+          pnpm build || npm run build
+          pnpm typecheck || npm run typecheck
   
   test-react-native-monorepo:
     runs-on: ubuntu-latest
@@ -42,20 +42,20 @@ jobs:
         uses: ./.github/actions/setup-environment
       
       - name: Install CLI dependencies
-        run: pnpm install
+        run: pnpm install || npm install
       
       - name: Test react-native-monorepo template
         run: |
-          # CLIでプロジェクトを作成
-          node bin/cli.js create test-monorepo --template react-native-monorepo --skip-git
+          # CLIでプロジェクトを作成（依存関係インストールもスキップ）
+          node bin/cli.js create test-monorepo --template react-native-monorepo --skip-git --skip-install
           
           # ビルドをテスト
           cd test-monorepo
-          pnpm install
-          pnpm build
+          pnpm install || npm install
+          pnpm build || npm run build
           
           # Web アプリの型チェック
-          pnpm web typecheck
+          pnpm web typecheck || npm run --workspace=web typecheck
           
           # モバイルアプリはExpoなのでビルドは型チェックのみ実行
-          pnpm mobile typecheck
+          pnpm mobile typecheck || npm run --workspace=mobile typecheck

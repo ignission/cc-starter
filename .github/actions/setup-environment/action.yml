@@ -17,6 +17,14 @@ runs:
       shell: bash
       run: asdf install
 
+    - name: Verify pnpm installation
+      shell: bash
+      run: |
+        echo "PATH: $PATH"
+        asdf current
+        which pnpm || echo "pnpm not found in PATH"
+        pnpm --version || echo "pnpm command failed"
+
     - name: Set NPM registry URL
       shell: bash
       run: npm config set registry https://registry.npmjs.org
