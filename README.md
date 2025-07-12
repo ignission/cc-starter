@@ -40,13 +40,14 @@ pnpm dev
 npx @ignission/cc-starter create my-app --template simple-pnpm
 ```
 
-### React Native Monorepo（開発予定）
+### React Native Monorepo（開発中）
 モバイル + Webのフルスタック開発向け
 
 - Expo + React Router v7 (SSR)
 - PNPM Workspace + Turbo
-- 共有UIコンポーネント
-- API統合準備
+- 共有UIコンポーネント（packages/ui）
+- 共有ユーティリティ（packages/utils）
+- 習慣トラッカーアプリの実装例（予定）
 
 ## コマンドオプション
 
@@ -67,22 +68,24 @@ npx @ignission/cc-starter create my-app --skip-git
 - **CLI**: Commander.js + Inquirer.js
 - **ファイル操作**: fs-extra + execa
 - **UI**: chalk + ora（スピナー）
+- **テスト**: Vitest + @vitest/ui
 
 ### テンプレート技術
 - **フロントエンド**: React Router v7、TypeScript、Tailwind CSS
 - **ビルドツール**: Vite
 - **パッケージマネージャー**: PNPM
+- **コンテナ**: Docker対応（Dockerfile付属）
 
 ### 自動化
 - **CI/CD**: GitHub Actions + asdf
-- **依存関係管理**: Renovate
+- **依存関係管理**: Renovate（平日9:00-18:00 JST）
 - **リリース**: Changesets
 
 ## 開発
 
 ### 要件
-- Node.js 20+
-- PNPM 8+
+- Node.js 24.4.0+（asdf推奨）
+- PNPM 10.13.1+
 
 ### セットアップ
 
@@ -98,17 +101,38 @@ pnpm install
 node bin/cli.js create test-project
 ```
 
-### テンプレートのテスト
+### テスト実行
 
 ```bash
-# テストプロジェクトを作成
-node bin/cli.js create test-project --skip-git
+# ユニットテストの実行
+pnpm test
 
-# ビルドテスト
+# テストカバレッジ確認
+pnpm test:coverage
+
+# テンプレートの動作確認
+node bin/cli.js create test-project --skip-git
 cd test-project
 pnpm install
 pnpm build
 pnpm typecheck
+```
+
+## プロジェクト構造
+
+```
+cc-starter/
+├── bin/
+│   └── cli.js           # CLIエントリーポイント
+├── lib/
+│   ├── create.js        # プロジェクト作成ロジック
+│   ├── prompts.js       # インタラクティブプロンプト
+│   └── utils.js         # ユーティリティ関数
+├── templates/
+│   ├── simple-pnpm/     # React Router v7テンプレート
+│   └── react-native-monorepo/  # Monorepoテンプレート（開発中）
+├── tests/               # ユニットテスト
+└── .github/workflows/   # CI/CD設定
 ```
 
 ## ライセンス

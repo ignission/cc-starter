@@ -79,13 +79,45 @@ npx @ignission/cc-starter create my-app --template react-native-monorepo --skip-
 
 ## 現在の実装状況
 
-プロジェクトは基本機能が完成しています：
-1. ✅ Commander.jsを使用した基本的なCLI
-2. ✅ テンプレート変数を含むファイルコピー機能
-3. ✅ Simple PNPMテンプレート（React Router v7）
-4. ⏳ React Native Monorepoテンプレート（未実装）
-5. ✅ GitHub Actionsのセットアップ
-6. ✅ Renovateによる依存関係管理
+### ✅ 実装済み機能
+
+1. **基本的なCLI機能**
+   - Commander.jsを使用したCLIエントリーポイント
+   - `create`コマンドの完全な実装
+   - 日本語でのエラーメッセージと絵文字付きUX
+
+2. **コアロジック**
+   - テンプレート変数を含むファイルコピー機能
+   - インタラクティブなプロンプト（inquirer使用）
+   - Git初期化と依存関係の自動インストール
+
+3. **Simple PNPMテンプレート** - 完全実装済み
+   - React Router v7（SSR mode）
+   - TypeScript + Tailwind CSS
+   - Vite開発サーバー
+   - Dockerfile、CLAUDE.md、README.md含む
+
+4. **テスト環境**
+   - Vitestを使用したユニットテスト
+   - 包括的なテストカバレッジ（create、prompts、utils）
+
+5. **CI/CD環境**
+   - GitHub Actions（テンプレートテスト、リリース自動化）
+   - Renovateによる依存関係管理（平日9:00-18:00 JST）
+   - asdfによる環境統一（Node.js 24.4.0、PNPM 10.13.1）
+
+### ⏳ 未実装機能
+
+1. **React Native Monorepoテンプレート**
+   - テンプレートディレクトリは存在するが内容は最小限
+   - apps/mobile（Expo）、apps/web（React Router v7）、packages/の実装が必要
+   - Turboによるビルド設定が未実装
+
+2. **習慣トラッカーアプリの実装例**
+   - テンプレート内のサンプルアプリとして計画されているが未実装
+
+3. **テンプレート固有のプロンプト**
+   - `promptForTemplateSpecificOptions`関数は実装済みだが未統合
 
 ## テストアプローチ
 
