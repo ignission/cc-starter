@@ -48,7 +48,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/inquirer": "^9.0.8",
     "@types/node": "^20.19.7",
-    "vitest": "^1.6.1"
+    "vitest": "^3.2.4"
   },
   "keywords": [
     "cli",
