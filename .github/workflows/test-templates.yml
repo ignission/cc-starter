@@ -27,6 +27,10 @@ jobs:
           
           # ビルドをテスト
           cd test-simple-pnpm
+          
+          # asdfをセットアップ（プロジェクトの.tool-versionsを使用）
+          asdf install
+          
           pnpm install
           pnpm build
           pnpm typecheck
