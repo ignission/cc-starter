@@ -42,3 +42,5 @@ tmp/
 
 # Renovate
 renovate.log
+
+.react-router/

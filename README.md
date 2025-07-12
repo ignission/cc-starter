@@ -28,12 +28,13 @@ pnpm dev
 ## 利用可能なテンプレート
 
 ### Simple PNPM
-シンプルなSPAアプリケーション向け
+シンプルなSSRアプリケーション向け
 
-- React Router v7 (SPA mode)
+- React Router v7 (SSR mode)
 - TypeScript + Tailwind CSS
 - Vite開発環境
-- 静的ホスティング対応
+- Node.jsホスティング対応（Vercel、Render、Railway等）
+- SEO対策とパフォーマンス最適化
 
 ```bash
 npx @ignission/cc-starter create my-app --template simple-pnpm

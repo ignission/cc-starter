@@ -57,11 +57,12 @@ npx @ignission/cc-starter create my-app --template react-native-monorepo --skip-
 - Vite + Turboによる高速ビルド
 
 **Simple PNPM** (`templates/simple-pnpm/`):
-- React Router v7（SPA mode）
+- React Router v7（SSR mode）
 - Vite開発サーバーによる高速な開発体験
 - TypeScriptとTailwind CSS
 - クイックスタート用の最小限のセットアップ
-- 静的ホスティングに最適
+- Node.jsベースのホスティング環境に最適（Vercel、Render、Railway等）
+- サーバーサイドレンダリングによるSEO対策とパフォーマンス向上
 
 ### 実装ガイドライン
 
