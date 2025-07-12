@@ -18,7 +18,7 @@ jobs:
         uses: ./.github/actions/setup-environment
       
       - name: Install CLI dependencies
-        run: pnpm install || npm install
+        run: pnpm install
       
       - name: Test simple-pnpm template
         run: |
@@ -27,9 +27,9 @@ jobs:
           
           # ビルドをテスト
           cd test-simple-pnpm
-          pnpm install || npm install
-          pnpm build || npm run build
-          pnpm typecheck || npm run typecheck
+          pnpm install
+          pnpm build
+          pnpm typecheck
   
   test-react-native-monorepo:
     runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
         uses: ./.github/actions/setup-environment
       
       - name: Install CLI dependencies
-        run: pnpm install || npm install
+        run: pnpm install
       
       - name: Test react-native-monorepo template
         run: |
@@ -51,11 +51,11 @@ jobs:
           
           # ビルドをテスト
           cd test-monorepo
-          pnpm install || npm install
-          pnpm build || npm run build
+          pnpm install
+          pnpm build
           
           # Web アプリの型チェック
-          pnpm web typecheck || npm run --workspace=web typecheck
+          pnpm web typecheck
           
           # モバイルアプリはExpoなのでビルドは型チェックのみ実行
-          pnpm mobile typecheck || npm run --workspace=mobile typecheck
+          pnpm mobile typecheck

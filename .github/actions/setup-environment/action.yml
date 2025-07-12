@@ -17,13 +17,14 @@ runs:
       shell: bash
       run: asdf install
 
-    - name: Verify pnpm installation
+    - name: Verify and ensure pnpm
       shell: bash
       run: |
         echo "PATH: $PATH"
         asdf current
-        which pnpm || echo "pnpm not found in PATH"
-        pnpm --version || echo "pnpm command failed"
+        asdf reshim nodejs
+        asdf reshim pnpm
+        pnpm --version
 
     - name: Set NPM registry URL
       shell: bash
