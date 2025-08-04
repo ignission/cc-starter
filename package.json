@@ -45,7 +45,7 @@
     "commander": "14.0.0",
     "execa": "9.6.0",
     "fs-extra": "11.3.0",
-    "inquirer": "12.7.0",
+    "inquirer": "12.9.0",
     "ora": "8.2.0"
   },
   "devDependencies": {
